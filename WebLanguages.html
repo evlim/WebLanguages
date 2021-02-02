@@ -70,3 +70,80 @@
 </script>
 
 <!-- Language Switch END -->
+
+
+
+
+
+<!-- Language Switch -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.6.0/css/flag-icon.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/s/ls.js"></script>
+<script>
+    $(function() {
+
+    var defaultLanguage = 'en';
+    var lang = location.pathname.split("/")[1];
+    var defaultClass = 'lang-'+defaultLanguage+'';
+    var itemParent = "nav [class*='collection'],nav [class*='folder'],nav [class*='index'],nav [class*='group'],nav [class*='header-nav-item--external']";
+    if (lang == "" || lang.length > 2 ){
+      var lang = defaultLanguage;
+    }
+
+    $('a[href="/"]').addClass('lang-'+defaultLanguage+'').parents(itemParent).addClass('lang-'+defaultLanguage+'');
+    $('nav a:link:not([href^="http://"]):not([href^="https://"])').each(function () {
+      var langType = $(this).attr('href').split("/")[1];
+      var multiLanguageClass = 'multilanguage lang-' + langType + '';
+      if (undefined !== langType && langType.length <= 2) 
+        $(this).addClass(multiLanguageClass).parents(itemParent).addClass(multiLanguageClass);
+    });
+    $('nav button').each(function () {
+      var langTypeFolder = $(this).attr('data-controller-folder-toggle').split("/")[0];
+      var multiLanguageClass = 'multilanguage lang-' + langTypeFolder + '';
+      if (undefined !== langTypeFolder && langTypeFolder.length <= 2) 
+        $(this).addClass(multiLanguageClass);
+    });
+
+      
+    if (lang == "en") {
+      $('a[href="/"]').attr("href", "/en/home/");
+  //    $('a[href="/contact"]').attr("href", "/en/contact");
+   //   $('[data-section-id="5fa2c72cc3edf322c0039107"]').hide(); 
+
+    }
+      
+    if (lang == "fr") {
+      $('a[href="/"]').attr("href", "/fr/home/");
+   //   $('a[href="/contact"]').text('Kontakt');
+   //   $('a[href="/contact"]').attr("href", "/de/kontaktieren");
+   //   $('[data-section-id="5ff6f37450a3eb131d9f21a9"]').hide();
+      
+      
+      $('.header-menu-controls-control span:nth-child(2)').text('retour');
+    }
+      
+      
+	$('a.theme-btn--primary.btn.multilanguage').addClass('exclude');
+    $('.exclude-me,.exclude-me a').addClass('exclude');
+    $('.sqs-svg-icon--list a,.SocialLinks-link').addClass('exclude');
+    $('a.theme-btn--primary.btn.multilanguage.lang-en').addClass('exclude');
+
+    $('.multilanguage:not(".lang-'+lang+',.exclude,.header-menu-controls-control")').remove();
+    
+      // FLAGS SWITCH //
+// $('body').prepend('<div class="language"><a href="/en/home" class="lang-en"><span class="flag-icon flag-icon-us"></span></a> <a href="/es/home" class="lang-es"><span class="flag-icon flag-icon-es"></span></a> <a href="/ru/home" class="lang-ru"><span class="flag-icon flag-icon-ru"></span></a> <a href="/zh/home" class="lang-cn"><span class="flag-icon flag-icon-cn"></span></a> <a href="/id/home" class="lang-in"><span class="flag-icon flag-icon-in"></span></a> <a href="/ja/home" class="lang-jp"><span class="flag-icon flag-icon-jp"></span></a> <a href="/ro/home" class="lang-ro"><span class="flag-icon flag-icon-ro"></span></a></div>');
+    
+      // TEXT SWITCH // 
+  $('body').prepend('<div class="language"><a href="/en/home" class="lang-en"><small><small>English</a> | <a href="/es/home" class="lang-es">Español</a> | <a href="/ru/home" class="lang-ru">Русский</a> | <a href="/zh/home" class="lang-zh">中文</a> | <a href="/id/home" class="lang-id">Indonesia</a> | <a href="/ja/home" class="lang-ja">日本語</a> | <a href="/ro/home" class="lang-ro">Română</small></small></a></div>');
+
+         
+      $(".header-nav-wrapper").show();
+      $(".header-announcement-bar-wrapper").show();
+      $(".header-nav-wrapper, a.btn.btn--border.theme-btn--primary-inverse").show();
+      $(".header-actions.header-actions--right").show();
+      $("a.btn.btn--border.theme-btn--primary-inverse").show();
+     
+  });
+</script>
+
+<!-- Language Switch END -->
